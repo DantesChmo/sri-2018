@@ -1,0 +1,14 @@
+{
+    "extends": ["stylelint-config-suitcss"],
+    "plugins": ["stylelint-order"],
+    "rules": {
+        "at-rule-name-space-after": "always",
+        "value-list-comma-space-after": "always",
+        "indentation": 4,
+        "order/order": [
+            "custom-properties",
+            "declarations"
+        ],
+        "order/properties-alphabetical-order": null
+    }
+}
