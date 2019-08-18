@@ -1,0 +1,56 @@
+.Page {
+    width: 1366px;
+    margin: 0 auto;
+}
+
+.Logo {
+    padding-left: 40px;
+    font-size: 27px;
+    font-family: Arial Narrow;
+    &_first {
+        display: inline-block;
+        font-weight: bold;
+        margin-right:5px;
+        &::first-letter {
+            text-transform: uppercase;
+            color: red;
+        }
+    }
+
+    &_second {
+        display: inline-block;
+        &::first-letter {
+            text-transform: uppercase;
+        }
+
+    }
+}
+
+.Header {
+    display:grid;
+    grid-template-columns:200px 2fr 3fr;
+    height: 92px;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid #F0F0F0;
+    &-Navigation {
+        display: grid;
+        grid-template-columns: repeat(3, 117px);
+        &-item {
+            opacity: 0.6;
+            font-family:Arial;
+            font-weight: bold;
+            font-size: 16px;
+            color: #333333;
+            line-height: 20px;
+            text-align: center;
+            &-link {
+                color: inherit;
+                text-decoration: none;
+            }
+            &_active {
+                opacity:1;
+                }
+            }
+        }
+    }
