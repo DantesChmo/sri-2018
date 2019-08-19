@@ -1,12 +1,12 @@
 import * as React from 'react';
-import { Header } from '../../components/header/index';
+import { Head } from '../pages/head';
 import './app.pcss';
 
-export class Head extends React.Component {
+export class App extends React.Component {
     render(): React.ReactNode {
         return (
             <div>
-                <Header />
+                <Head />
             </div>
         );
     }

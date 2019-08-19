@@ -1,13 +1,15 @@
+@import "../../app/vars.pcss" screen;
+
 .Logo {
     flex: 1;
     padding-left: 40px;
-    font-size: 27px;
-    font-family: Arial Narrow;
+    font: var(--LogoFont);
 
     &_first {
         display: inline-block;
         font-weight: bold;
         margin-right: 5px;
+        background: var(--color);
 
         &::first-letter {
             text-transform: uppercase;
@@ -27,40 +29,12 @@
 
 .Header {
     width: 1366px;
-    margin: 0 auto;
     display: flex;
     height: 92px;
 
     &-Logo {
         display: flex;
         align-items: center;
-    }
-
-    .Logo {
-        flex: 1;
-        padding-left: 40px;
-        font-size: 27px;
-        font-family: Arial Narrow;
-
-        &_first {
-            display: inline-block;
-            font-weight: bold;
-            margin-right: 5px;
-
-            &::first-letter {
-                text-transform: uppercase;
-                color: red;
-            }
-        }
-
-        &_second {
-            display: inline-block;
-
-            &::first-letter {
-                text-transform: uppercase;
-            }
-
-        }
     }
 
     &-Navigation {
@@ -72,11 +46,9 @@
             width: 119px;
             text-align: center;
             opacity: 0.6;
-            font-family: Arial;
-            font-weight: bold;
-            font-size: 16px;
-            color: #333;
-            line-height: 20px;
+            font: var(--ItemFont);
+            color: var(--BlackColor);
+            line-height: var(--NavItemLineHeight);
 
             &-link {
                 color: inherit;
@@ -90,7 +62,7 @@
     }
 }
 
-.Horizontal-Line {
+.HorizontalLine {
     background: #f0f0f0;
     border: none;
     height: 1px;

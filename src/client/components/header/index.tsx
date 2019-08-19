@@ -17,7 +17,7 @@ export class Header extends React.Component {
                         <div className="Header-Navigation-Item"><a href="#" className="Header-Navigation-Item-link">Сценарии</a></div>
                     </div>
                 </div>
-                <hr className="Horizontal-Line" />
+                <hr className="HorizontalLine" />
             </div>
         );
     }
