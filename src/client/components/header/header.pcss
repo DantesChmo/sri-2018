@@ -5,7 +5,7 @@
     padding-left: 40px;
     font: var(--LogoFont);
 
-    &_first {
+    &-First {
         display: inline-block;
         font-weight: bold;
         margin-right: 5px;
@@ -17,13 +17,37 @@
         }
     }
 
-    &_second {
+    &-Second {
         display: inline-block;
 
         &::first-letter {
             text-transform: uppercase;
         }
 
+    }
+}
+
+.Navigation {
+
+    &-item {
+        width: 119px;
+        text-align: center;
+        opacity: 0.6;
+        font: var(--ItemFont);
+        color: var(--BlackColor);
+        line-height: var(--NavItemLineHeight);
+
+        &_active {
+            opacity: 1;
+        }
+    }
+}
+
+.NavigationItemWrap {
+
+    &-link {
+        color: inherit;
+        text-decoration: none;
     }
 }
 
@@ -41,24 +65,6 @@
         flex: 6;
         display: flex;
         align-items: center;
-
-        &-item {
-            width: 119px;
-            text-align: center;
-            opacity: 0.6;
-            font: var(--ItemFont);
-            color: var(--BlackColor);
-            line-height: var(--NavItemLineHeight);
-
-            &-link {
-                color: inherit;
-                text-decoration: none;
-            }
-
-            &_active {
-                opacity: 1;
-            }
-        }
     }
 }
 
