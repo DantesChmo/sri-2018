@@ -3,6 +3,10 @@ import {createElement} from 'react';
 import {renderToString} from 'react-dom/server';
 import {staticRouter} from './middlewares/static-router';
 import {IndexPage} from './index-page';
+import {MongoClient} from 'mongodb';
+
+const port = 3000;
+const dbConnectUrl = 'mongodb+srv://Doni-rio:11022011kk@sriproject-otv9c.mongodb.net/test?retryWrites=true&w=majority"';
 
 const app = express();
 
@@ -20,7 +24,13 @@ app
         res.send(prepareString());
     });
 
-const port = 3000;
+MongoClient.connect(dbConnectUrl, (err, db) => {
+    if (err) {
+        throw err;
+    }
+    // eslint-disable-next-line no-console
+    console.log('hello world');
+});
 
 app.listen(port, () => {
     // eslint-disable-next-line no-console
