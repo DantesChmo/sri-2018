@@ -29,7 +29,7 @@ MongoClient.connect(dbConnectUrl, (err, db) => {
         throw err;
     }
     // eslint-disable-next-line no-console
-    console.log('hello world');
+    console.log('Connecting to Database');
 });
 
 app.listen(port, () => {
