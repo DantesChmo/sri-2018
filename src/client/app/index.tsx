@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Main } from '../pages/head';
+import { Main } from '../pages/main';
 import './app.pcss';
 
 export class App extends React.Component {

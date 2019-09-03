@@ -11,15 +11,15 @@ export class Header extends React.Component {
                         <span className='Logo-First' >яндекс</span>
                         <span className='Logo-Second'>дом</span>
                     </div>
-                    <div className="Header-Navigation Navigation">
-                        <div className="Navigation-Item Navigation-Item_active NavigationItemWrap">
-                            <a href="#" className="NavigationItemWrap-link">Сводка</a>
+                    <div className="Navigation Header-Navigation">
+                        <div className="NavigationItemWrap Navigation-Item Navigation-Item_active">
+                            <a href="#" className="NavigationItemWrap-Link">Сводка</a>
                         </div>
-                        <div className="Navigation-Item NavigationItemWrap">
-                            <a href="#" className="NavigationItemWrap-link">Устройства</a>
+                        <div className="NavigationItemWrap Navigation-Item">
+                            <a href="#" className="NavigationItemWrap-Link">Устройства</a>
                         </div>
-                        <div className="Navigation-Item NavigationItemWrap">
-                            <a href="#" className="NavigationItemWrap-link">Сценарии</a>
+                        <div className="NavigationItemWrap Navigation-Item">
+                            <a href="#" className="NavigationItemWrap-Link">Сценарии</a>
                         </div>
                     </div>
                 </div>

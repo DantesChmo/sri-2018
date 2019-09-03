@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Header } from '../../components/header/index';
-import './app.pcss';
+import './main.pcss';
 
 export class Main extends React.Component {
     render(): React.ReactNode {
