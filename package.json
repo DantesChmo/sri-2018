@@ -35,8 +35,8 @@
     "mongodb": "^3.3.2",
     "mongoose": "^5.7.1",
     "nodemon": "^1.19.1",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
     "serve-favicon": "^2.5.0",
     "webpack": "^4.39.1",
     "webpack-cli": "^3.3.6"
