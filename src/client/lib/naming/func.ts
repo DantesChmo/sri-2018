@@ -1,37 +1,51 @@
-interface valueType{
-    [key:string]:string;
+interface modifierValueTypeIsObject{
+    [key:string]:string|boolean;
 }
-interface modType {
-    [key:string]:valueType|string|any;//если убрать any, то в строке (*) ругается, что Правая часть оператора "for…in" должна иметь тип "any"
+interface typeOfModificationForDeclorationBEM {
+    [key:string]:modifierValueTypeIsObject|string;
 }
 
 enum Mode {
     STANDART,
-    React
+    REACT
 }
 
 function nameFormat(string:string):string{
         let result:string = "";
-        for (let stringIndex = 0; stringIndex < string.length; stringIndex++) {
-            if (stringIndex == 0 || string[stringIndex-1] === " " || string[stringIndex-1] === "-"){
-                result += string[stringIndex].toUpperCase(); 
-            } else {
-                result += string[stringIndex].toLowerCase();
+        let lastChar:string = "";
+        for (const char of string) {
+            if(lastChar === " " || lastChar === "-" || lastChar == ""){
+                result += char.toUpperCase();
+            }else {
+                result +=char.toLowerCase();
             }
+            lastChar = char;
         }
+
     return result
 }
 
 function nameLowerCase(string:string):string{
     let result:string = "";
-    for (let stringIndex = 0; stringIndex < string.length; stringIndex++) {
-            result += string[stringIndex].toLowerCase();
+    for (const char of string) {
+        result += char.toLowerCase()        
     }
     return result
 }
 
+function checkValue(obj:modifierValueTypeIsObject,modSeparator:string,currentKey:string):string{
+    let result:string;
+    if (typeof(obj[currentKey]) === "boolean" ){            
+        result = modSeparator + currentKey;
+    } else {
+        result = modSeparator + currentKey + modSeparator + obj[currentKey];
+    }
+    return result
+}
+ 
 function declorationBEM(mode:Mode, elemSeparator:string, modSeparator:string){
-    return function bemGenerator(block:string, elem:string = "", mod?:modType){
+    return function bemGenerator(block:string, elem:string = "", mod?:typeOfModificationForDeclorationBEM|modifierValueTypeIsObject){
+
         block = nameLowerCase(block);
         elem = nameLowerCase(elem);
         let result:string = "";
@@ -40,25 +54,27 @@ function declorationBEM(mode:Mode, elemSeparator:string, modSeparator:string){
             result += ` ${elem + elemSeparator + block}`
         }
         if (mod != undefined && !Array.isArray(mod)){
-            for (let wrap in mod) {
-                if (typeof(mod[wrap]) === "object"){ //если содержимое модификатора - объект
-                    for (let inner in mod[wrap]) {             //(*)
-                        if (nameLowerCase(wrap) === block){ 
-                            result += ` ${wrap + modSeparator + inner + modSeparator + mod[wrap][inner] }`
-                        } else if (nameLowerCase(wrap) === elem) {
-                            result += ` ${wrap + elemSeparator + block + modSeparator + inner + modSeparator + mod[wrap][inner] }`
+
+            Object.keys(mod).forEach(function(modKeys){
+                const modValue:any = mod[modKeys];               
+                if (typeof(modValue) === "object"){
+                    Object.keys(modValue).forEach(function(keyOfModValue){ //по внутреннему объекту
+                        if (nameLowerCase(modKeys) === block){
+                            result += ` ${modKeys + checkValue(modValue,modSeparator,keyOfModValue)}`;
+                        } else if (nameLowerCase(modKeys) === elem) {
+                            result += ` ${modKeys + elemSeparator + block + checkValue(modValue,modSeparator,keyOfModValue)}`;                                
                         }
-                    }
+                    });
                 } else {
-                    result += ` ${block + elemSeparator + wrap + modSeparator+  mod[wrap]}`
-                } 
-            }
+                    const defaultObject:any = mod;
+                    result += ` ${block + checkValue(defaultObject,modSeparator,modKeys)}`;
+                }
+            });
+
+
         }
         return nameFormat(result)
     }
 }
 
-
-const bem = declorationBEM(Mode.React,"-","_");
-
-//console.log(bem( "loGo", "heAder" , {"loGo":{color:"White"} , "heADer":{siZe:"big"}}));
+export const bem = declorationBEM(Mode.REACT,"-","_");
