@@ -1,12 +1,14 @@
 import express from 'express';
+import cors from 'cors';
+import bodyParser from 'body-parser';
 import {createElement} from 'react';
 import {renderToString} from 'react-dom/server';
+import {db} from './db';
+import {apiRouter} from './middlewares/api-router';
 import {staticRouter} from './middlewares/static-router';
 import {IndexPage} from './index-page';
-import {MongoClient} from 'mongodb';
 
 const port = 3000;
-const dbConnectUrl = 'mongodb+srv://Doni-rio:11022011kk@sriproject-otv9c.mongodb.net/test?retryWrites=true&w=majority"';
 
 const app = express();
 
@@ -18,19 +20,17 @@ function prepareString(): string {
 }
 
 app
-    .get('/ping', (_req, res) => res.sendStatus(200))
+    .use(bodyParser.urlencoded({extended: true}))
+    .use(bodyParser.json)
+    .use(cors())
     .use(staticRouter)
+    .use('/api', apiRouter)
+    .get('/ping', (_req, res) => res.sendStatus(200))
     .get('/', (_req, res) => {
         res.send(prepareString());
     });
 
-MongoClient.connect(dbConnectUrl, (err, db) => {
-    if (err) {
-        throw err;
-    }
-    // eslint-disable-next-line no-console
-    console.log('Connecting to Database');
-});
+db.on('error', () => {});
 
 app.listen(port, () => {
     // eslint-disable-next-line no-console
