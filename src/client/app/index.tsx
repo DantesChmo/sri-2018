@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { Main } from '../pages/main';
+import {Main} from '../pages/main';
 import './app.pcss';
 
 export class App extends React.Component {
     render(): React.ReactNode {
         return (
-            <div className="App">
+            <div className='App'>
                 <Main />
             </div>
         );
