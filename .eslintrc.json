@@ -2,14 +2,19 @@
     "env": {
         "browser": true,
         "commonjs": true,
-        "es6": true
+        "es6": true,
+        "mocha": true,
+        "jest": true
     },
     "parser": "@typescript-eslint/parser",
     "plugins": [
         "@typescript-eslint",
-        "react"
+        "react",
+        "mocha",
+        "jest"
     ],
     "extends": [
+        "loris/es2017",
         "plugin:@typescript-eslint/recommended",
         "plugin:react/recommended"
     ],
@@ -53,7 +58,7 @@
         "max-len": [
             "error",
             {
-                "code": 120,
+                "code": 170,
                 "tabWidth": 4
             }
         ],
